@@ -7,9 +7,9 @@ class BusinessLogic:
 
     def __init__(self, filename):
         self.filename = filename
-        self.__buildStructure()
+        self.__parseSchedulesToEmployeeWorkDays()
     
-    def __loadData(self):
+    def __loadWorkingSchedules(self):
         try:
             f = open(self.filename, 'r')
         except OSError:
@@ -20,11 +20,11 @@ class BusinessLogic:
             f.close()
             return lines
 
-    def __buildStructure(self):
-        lines = self.__loadData()
+    def __parseSchedulesToEmployeeWorkDays(self):
+        rawWorkingSchedules = self.__loadWorkingSchedules()
         try:
-            for i in range(len(lines)):
-                employee_name, work_days = lines[i].strip("\n").split("=")
+            for i in range(len(rawWorkingSchedules)):
+                employee_name, work_days = rawWorkingSchedules[i].strip("\n").split("=")
                 employee_work_days = EmployeeWorkDays(employee_name)
                 for work_day in work_days.split(","):
                     date = work_day[0:2]
