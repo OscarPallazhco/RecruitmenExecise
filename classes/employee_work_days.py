@@ -13,8 +13,11 @@ class EmployeeWorkDays:
     def __repr__(self):
         return self.__str__()
 
-    def addWorkDay(self, date, entry, departure):
+    def addWorkDay(self, date:str, entry:int, departure:int):
         self.work_days.append(WorkDay(date, entry, departure))
+    
+    def addWorkDay(self, workDay: WorkDay):
+        self.work_days.append(workDay)
 
     def getCantOfWorkDaysCoincidents(self, employee_work_days):
         amount = 0
