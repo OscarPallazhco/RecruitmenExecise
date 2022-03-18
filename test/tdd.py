@@ -7,14 +7,14 @@ sys.path.append(os.path.dirname(SCRIPT_DIR))
 
 from classes.workday import WorkDay
 from utils.parsers.parseData import parseWorkDay
-from utils.exceptions.exceptions import INVALID_FORMAT
+from utils.exceptions.exceptions import InvalidFormatError
 
 
 class ParseDataTest(unittest.TestCase):
 
     def test__parseWorkDay__raise_an_exception__when_format_is_invalid(self):
         work_day_input = "MO10:0s-12:00"
-        with self.assertRaises(INVALID_FORMAT):
+        with self.assertRaises(InvalidFormatError):
             parseWorkDay(work_day_input)
     
     def test__parseWorkDay__give_a_WorkDay__when_format_is_valid(self):
