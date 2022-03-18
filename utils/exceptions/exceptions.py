@@ -1,3 +1,3 @@
 
-class INVALID_FORMAT(Exception):
+class InvalidFormatError(Exception):
     pass
