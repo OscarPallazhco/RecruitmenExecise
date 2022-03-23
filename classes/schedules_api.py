@@ -1,5 +1,8 @@
 
-class SchedulesFile:
+from classes.schedules import Schedules
+
+
+class SchedulesFile(Schedules):
 
     employees_work_days = []
 

@@ -1,9 +1,10 @@
 import sys
 
 from classes.employee_work_days import EmployeeWorkDays
+from classes.schedules import Schedules
 from utils.parsers.parseData import parseWorkDay
 
-class SchedulesFile:
+class SchedulesFile(Schedules):
 
     employees_work_days = []
 
