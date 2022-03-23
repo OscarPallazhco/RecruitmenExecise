@@ -8,7 +8,7 @@ from classes.employee import Employee
 from classes.workday import WorkDay
 from classes.employee_work_days import EmployeeWorkDays
 from classes.business_logic import BusinessLogic
-from classes.schedules_file import SchedulesFile
+from classes.schedules_file import SchedulesFile, SchedulesFileModel
 
 class WorkDayTest(unittest.TestCase):
     def test_isCoincident_differentDaysHoursCoincident(self):
@@ -47,7 +47,7 @@ class EmployeeWorkDaysTest(unittest.TestCase):
 class BusinessLogicTest(unittest.TestCase):
     def test_calculate_correctAmountOfEmployeeCouple(self):
         file_location = os.path.join(SCRIPT_DIR, "..", "data", "data3.txt")
-        schedules_source = SchedulesFile(file_location)
+        schedules_source = SchedulesFileModel(file_location)
         b_logic = BusinessLogic(schedules_source)
         results_table = b_logic.calculateAmountEmployeesCoincidents()
         amount_of_employee_couple = len(results_table)

@@ -4,6 +4,8 @@ from classes.schedules import Schedules
 
 class BusinessLogic:
 
+    employees_work_days = []
+
     def __init__(self, schedules_source: Schedules):
         self.employees_work_days = schedules_source.load_employees_schedules()
 

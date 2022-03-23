@@ -8,9 +8,21 @@ class SchedulesFile(Schedules):
 
     employees_work_days = []
 
+    def __init__(self, employees_work_days):
+        self.employees_work_days = employees_work_days
+    
+    def load_employees_schedules(self) -> list:
+        return self.employees_work_days
+
+
+class SchedulesFileModel(SchedulesFile):
+
+    employees_work_days = []
+
     def __init__(self, filename):
         self.filename = filename
         self.__parseSchedulesToEmployeeWorkDays()
+        super().__init__(self.employees_work_days)
 
     def __loadWorkingSchedules(self):
         try:
@@ -35,6 +47,3 @@ class SchedulesFile(Schedules):
         except Exception as exc:
             print("Error: Estructura del archivo no es válida.\nEjemplo:\nJUAN=MO10:00-12:00,TH12:00-14:00,SU20:00-21:00")
             sys.exit(0)
-    
-    def load_employees_schedules(self) -> list:
-        return self.employees_work_days
