@@ -11,4 +11,4 @@ def parseWorkDay(raw_work_day):
         departure = int(raw_departure.replace(":", ""))
         return WorkDay(date, entry, departure)
     except:
-        raise InvalidFormatError
+        raise InvalidFormatError()

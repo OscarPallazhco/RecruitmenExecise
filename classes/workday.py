@@ -7,6 +7,11 @@ class WorkDay:
     def __str__(self):
         return str(self.date) + str(self.entry) + str(self.departure)
 
+    def __eq__(self, other):
+        return self.date == other.date and \
+            self.entry == other.entry and \
+            self.departure == other.departure
+
     def __repr__(self):
         return self.__str__()
 

@@ -1,3 +1,5 @@
 
 class InvalidFormatError(Exception):
-    pass
+    def __init__(self, message="Invalid format"):
+        self.message = message
+        super().__init__(self.message)

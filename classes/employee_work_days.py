@@ -9,7 +9,10 @@ class EmployeeWorkDays:
 
     def __str__(self):
         return str(self.employee) + str(self.work_days)
-
+    
+    def __eq__(self, other):
+        return self.employee == other.employee and \
+            self.work_days == other.work_days
     def __repr__(self):
         return self.__str__()
 
