@@ -46,5 +46,23 @@ class ParseDataTest(unittest.TestCase):
         self.assertEqual(result.employees_work_days, expected)
 
     
+    def test__addWorkDay__add_workday__when_format_is_valid(self):
+        wd = WorkDay("MO", 1000, 1200) 
+        expected_employee_work_days = EmployeeWorkDays("ANDRES", [wd])
+
+        current_employee_work_days = EmployeeWorkDays("ANDRES")
+        current_employee_work_days.addWorkDay(wd)
+        
+        self.assertEqual(current_employee_work_days, expected_employee_work_days)
+
+
+    def test__addWorkDay__raise_an_InvalidFormatError_exception__when_format_is_invalid(self):
+        wd = WorkDay("MO", "1sdsd0", 1200) 
+        employee_work_days = EmployeeWorkDays("ANDRES")
+
+        with self.assertRaises(InvalidFormatError):
+            employee_work_days.addWorkDay(wd)
+
+
 if __name__ == '__main__':
     unittest.main()

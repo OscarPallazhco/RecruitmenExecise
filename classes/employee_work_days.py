@@ -1,5 +1,6 @@
 from classes.employee import Employee
 from classes.workday import WorkDay
+from utils.exceptions.exceptions import InvalidFormatError
 
 
 class EmployeeWorkDays:
@@ -17,10 +18,18 @@ class EmployeeWorkDays:
         return self.__str__()
 
     def addWorkDay(self, date:str, entry:int, departure:int):
-        self.work_days.append(WorkDay(date, entry, departure))
-    
+        is_valid_data = self.__validate_work_day(date, entry, departure)
+        if is_valid_data:
+            self.work_days.append(WorkDay(date, entry, departure))
+        else:
+            raise InvalidFormatError()
+
     def addWorkDay(self, workDay: WorkDay):
-        self.work_days.append(workDay)
+        is_valid_data = self.__validate_work_day(workDay.date, workDay.entry, workDay.departure)
+        if is_valid_data:
+            self.work_days.append(workDay)
+        else:
+            raise InvalidFormatError()
 
     def getCantOfWorkDaysCoincidents(self, employee_work_days):
         amount = 0
@@ -29,3 +38,9 @@ class EmployeeWorkDays:
                 if work_day.isCoincident(temp_work_day):
                     amount+=1
         return amount
+    
+    def __validate_work_day(self, date:str, entry:int, departure:int):
+        are_correct_types = type(date) == str and type(entry) == type(departure) == int
+        if len(date) > 1 and are_correct_types:
+            return True
+        return False
